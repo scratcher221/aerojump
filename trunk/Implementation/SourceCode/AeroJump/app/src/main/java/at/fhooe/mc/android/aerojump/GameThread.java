@@ -6,9 +6,9 @@ import android.util.Log;
  * Created by david on 21.06.17.
  */
 
-class GameThread extends Thread {
+public class GameThread extends Thread {
 
-    GameView gv;
+    private GameView gv;
 
     public GameThread(GameView gv) {
         this.gv = gv;
@@ -16,7 +16,7 @@ class GameThread extends Thread {
 
     @Override
     public void run() {
-        while(true) {
+        while(!gv.mGameOver) {
             gv.postInvalidate();
             try {
                 Thread.sleep(15);

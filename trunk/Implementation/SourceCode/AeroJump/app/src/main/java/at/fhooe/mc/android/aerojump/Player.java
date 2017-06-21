@@ -26,19 +26,21 @@ public class Player {
         mRectPlayer = new RectF(posX1, posY2, posX2, posY1);
     }
 
-    public void drawPlayer(Canvas c, Paint p) {
-        c.drawRect(mRectPlayer, p);
+    public void drawPlayer(Canvas _c, Paint _p) {
+        _c.drawRect(mRectPlayer, _p);
     }
 
-    public void movePlayer(boolean moved) {
+    public boolean movePlayer (boolean moved) {
         if (moved) {
-            mRectPlayer.top=mRectPlayer.top-8.0f;
-            mRectPlayer.bottom=mRectPlayer.bottom-8.0f;
+            mRectPlayer.top = mRectPlayer.top - 8.0f;
+            mRectPlayer.bottom = mRectPlayer.bottom - 8.0f;
+            if (mRectPlayer.bottom < 0) return true;
+        } else {
+            mRectPlayer.top = mRectPlayer.top + 8.0f;
+            mRectPlayer.bottom = mRectPlayer.bottom + 8.0f;
+            if (mRectPlayer.top > mScreenHeight) return true;
         }
-        else if (!moved){
-            mRectPlayer.top=mRectPlayer.top+8.0f;
-            mRectPlayer.bottom=mRectPlayer.bottom+8.0f;
-        }
+        return false;
     }
 
 }

@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -18,23 +19,26 @@ import java.util.TimerTask;
 
 public class GameView extends View implements View.OnTouchListener{
 
+    public boolean mGameOver;
     private Paint mPaint;
     private Obstacle mObstacle1, mObstacle2;
+    private Player mPlayer;
     private float mScreenWidth, mScreenHeight;
     private boolean onTouchHold;
-    private Player player;
 
     public GameView(Context _context){
         super(_context);
 
         mPaint = new Paint();
-        mScreenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
+        mScreenWidth = Resources.getSystem().getDisplayMetrics().widthPixels + getNavBarWidth(_context);
         mScreenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
 
         mObstacle1 = new Obstacle(mScreenWidth, mScreenHeight, true);
         mObstacle2 = new Obstacle(mScreenWidth, mScreenHeight, false);
-        player=new Player(mScreenWidth,mScreenHeight);
+        mPlayer = new Player(mScreenWidth,mScreenHeight);
+
         onTouchHold = false;
+        mGameOver = false;
         setOnTouchListener(this);
     }
 
@@ -48,10 +52,10 @@ public class GameView extends View implements View.OnTouchListener{
         mObstacle1.generateObstacles();
         mObstacle2.drawObstacle(canvas, mPaint);
         mObstacle2.generateObstacles();
+
         mPaint.setColor(Color.BLACK);
-        player.drawPlayer(canvas,mPaint);
-        player.movePlayer(onTouchHold);
-        invalidate();   //repaints the view
+        mPlayer.drawPlayer(canvas, mPaint);
+        mGameOver = mPlayer.movePlayer(onTouchHold); // && detectCollisions
     }
 
     @Override
@@ -59,5 +63,14 @@ public class GameView extends View implements View.OnTouchListener{
         if (_event.getAction() == MotionEvent.ACTION_DOWN) onTouchHold = true;
         else if (_event.getAction() == MotionEvent.ACTION_UP) onTouchHold = false;
         return true;
+    }
+
+    private static int getNavBarWidth(Context _context) {
+        int result = 0;
+        int resourceId = _context.getResources().getIdentifier("navigation_bar_width", "dimen", "android");
+        if (resourceId > 0) {
+            result = _context.getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
     }
 }

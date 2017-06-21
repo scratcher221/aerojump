@@ -1,5 +1,6 @@
 package at.fhooe.mc.android.aerojump;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
@@ -60,5 +61,4 @@ public class Obstacle {
             mRect2.top = mRect2.bottom - mScreenHeight*0.4f;
         }
     }
-
 }
