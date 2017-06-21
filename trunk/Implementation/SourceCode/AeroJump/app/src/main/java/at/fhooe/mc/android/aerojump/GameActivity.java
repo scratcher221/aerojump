@@ -6,10 +6,15 @@ import android.view.View;
 
 public class GameActivity extends Activity {
 
+    public final static String TAG = "AeroJump Game";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(new GameView(this));
+        GameView gv = new GameView(this);
+        setContentView(gv);
+        GameThread ot = new GameThread(gv);
+        ot.start();
     }
 
     @Override
