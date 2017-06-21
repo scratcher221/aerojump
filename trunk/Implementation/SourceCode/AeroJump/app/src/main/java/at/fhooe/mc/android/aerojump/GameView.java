@@ -22,6 +22,7 @@ public class GameView extends View implements View.OnTouchListener{
     private Obstacle mObstacle1, mObstacle2;
     private float mScreenWidth, mScreenHeight;
     private boolean onTouchHold;
+    private Player player;
 
     public GameView(Context _context){
         super(_context);
@@ -32,7 +33,7 @@ public class GameView extends View implements View.OnTouchListener{
 
         mObstacle1 = new Obstacle(mScreenWidth, mScreenHeight, true);
         mObstacle2 = new Obstacle(mScreenWidth, mScreenHeight, false);
-
+        player=new Player(mScreenWidth,mScreenHeight);
         onTouchHold = false;
         setOnTouchListener(this);
     }
@@ -47,7 +48,9 @@ public class GameView extends View implements View.OnTouchListener{
         mObstacle1.generateObstacles();
         mObstacle2.drawObstacle(canvas, mPaint);
         mObstacle2.generateObstacles();
-
+        mPaint.setColor(Color.BLACK);
+        player.drawPlayer(canvas,mPaint);
+        player.movePlayer(onTouchHold);
         invalidate();   //repaints the view
     }
 
