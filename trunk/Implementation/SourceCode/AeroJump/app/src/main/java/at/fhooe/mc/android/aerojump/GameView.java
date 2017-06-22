@@ -45,6 +45,22 @@ public class GameView extends View implements View.OnTouchListener{
         setOnTouchListener(this);
     }
 
+    private static int getNavBarWidth(Context _context) {
+        int result = 0;
+        int resourceId = _context.getResources().getIdentifier("navigation_bar_width", "dimen", "android");
+        if (resourceId > 0) {
+            result = _context.getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
+    }
+
+    @Override
+    public boolean onTouch(View _view, MotionEvent _event) {
+        if (_event.getAction() == MotionEvent.ACTION_DOWN) onTouchHold = true;
+        else if (_event.getAction() == MotionEvent.ACTION_UP) onTouchHold = false;
+        return true;
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -107,22 +123,6 @@ public class GameView extends View implements View.OnTouchListener{
             case 9 : return R.drawable.digit9;
             default: return -1;
         }
-    }
-
-    @Override
-    public boolean onTouch(View _view, MotionEvent _event) {
-        if (_event.getAction() == MotionEvent.ACTION_DOWN) onTouchHold = true;
-        else if (_event.getAction() == MotionEvent.ACTION_UP) onTouchHold = false;
-        return true;
-    }
-
-    private static int getNavBarWidth(Context _context) {
-        int result = 0;
-        int resourceId = _context.getResources().getIdentifier("navigation_bar_width", "dimen", "android");
-        if (resourceId > 0) {
-            result = _context.getResources().getDimensionPixelSize(resourceId);
-        }
-        return result;
     }
 
 }
