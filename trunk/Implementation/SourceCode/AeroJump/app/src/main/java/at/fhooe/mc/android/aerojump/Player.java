@@ -3,7 +3,6 @@ package at.fhooe.mc.android.aerojump;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.util.Log;
 
 /**
  * Created by peter on 21.06.2017.
@@ -48,10 +47,6 @@ public class Player {
     }
 
     public boolean detectCollision(RectF[] obstacle1, RectF[] obstacle2) {
-        if (Math.abs(mRectPlayer.left - obstacle1[1].right) < 5 || Math.abs(mRectPlayer.left - obstacle2[1].right) < 5) {
-            highscore++;
-            Log.i("Highscore:", " "+highscore);
-        }
         if (mRectPlayer.right >= obstacle1[0].left && mRectPlayer.left <= obstacle1[0].right) {
             if (mRectPlayer.top <= obstacle1[1].bottom && mRectPlayer.bottom >= obstacle1[1].top) return true;
             else if (mRectPlayer.bottom >= obstacle1[0].top) return true;
@@ -60,7 +55,8 @@ public class Player {
             if (mRectPlayer.top <= obstacle2[1].bottom && mRectPlayer.bottom >= obstacle2[1].top) return true;
             else if (mRectPlayer.bottom >= obstacle2[0].top) return true;
         }
-
+        if (Math.abs(mRectPlayer.left - obstacle1[1].right) < 5
+                || Math.abs(mRectPlayer.left - obstacle2[1].right) < 5) highscore++;
         return false;
     }
 
@@ -71,5 +67,10 @@ public class Player {
         mRectPlayer.right = mRectPlayer.right + 4.0f;
         moveOnGameOver = moveOnGameOver*1.1f;
     }
+
+    public int getHighscore(){
+        return highscore;
+    }
+
 }
 
