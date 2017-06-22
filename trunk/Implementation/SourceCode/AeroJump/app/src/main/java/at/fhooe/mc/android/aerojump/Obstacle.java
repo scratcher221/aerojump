@@ -33,6 +33,13 @@ public class Obstacle {
         mRect2 = new RectF(posX1, posY2, posX2, posY1);
     }
 
+    public RectF[] getRectangles() {
+        RectF[] rectangles = new RectF[2];
+        rectangles[0] = mRect1;
+        rectangles[1] = mRect2;
+        return rectangles;
+    }
+
     public void drawObstacle(Canvas _c, Paint _p){
         _c.drawRect(mRect1, _p);
         _c.drawRect(mRect2, _p);

@@ -43,5 +43,16 @@ public class Player {
         return false;
     }
 
+    public boolean detectCollision(RectF[] obstacle1, RectF[] obstacle2) {
+        if (mRectPlayer.right >= obstacle1[0].left && mRectPlayer.left <= obstacle1[0].right) {
+            if (mRectPlayer.top <= obstacle1[1].bottom && mRectPlayer.bottom >= obstacle1[1].top) return true;
+            else if (mRectPlayer.bottom >= obstacle1[0].top) return true;
+        }
+        else if (mRectPlayer.right >= obstacle2[0].left && mRectPlayer.left <= obstacle2[0].right) {
+            if (mRectPlayer.top <= obstacle2[1].bottom && mRectPlayer.bottom >= obstacle2[1].top) return true;
+            else if (mRectPlayer.bottom >= obstacle2[0].top) return true;
+        }
+        return false;
+    }
 }
 

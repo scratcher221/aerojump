@@ -55,7 +55,7 @@ public class GameView extends View implements View.OnTouchListener{
 
         mPaint.setColor(Color.BLACK);
         mPlayer.drawPlayer(canvas, mPaint);
-        mGameOver = mPlayer.movePlayer(onTouchHold); // && detectCollisions
+        mGameOver = mPlayer.movePlayer(onTouchHold) || mPlayer.detectCollision(mObstacle1.getRectangles(), mObstacle2.getRectangles());
     }
 
     @Override
