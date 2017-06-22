@@ -8,16 +8,16 @@ import android.util.Log;
 
 public class GameThread extends Thread {
 
-    private GameView gv;
+    private GameView gameView;
 
     public GameThread(GameView gv) {
-        this.gv = gv;
+        gameView = gv;
     }
 
     @Override
     public void run() {
-        while(!gv.mGameOver) {
-            gv.postInvalidate();
+        while(!gameView.mGameOver) {
+            gameView.postInvalidate();
             try {
                 Thread.sleep(15);
             } catch (InterruptedException e) {
