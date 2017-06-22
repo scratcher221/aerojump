@@ -12,6 +12,7 @@ public class Player {
 
     private RectF mRectPlayer;
     private float mScreenWidth, mScreenHeight;
+    private float moveOnGameOver;
 
     public Player(float width, float height) {
         mScreenHeight = height;
@@ -24,6 +25,7 @@ public class Player {
         posY2 = height / 2 - height / 32;
 
         mRectPlayer = new RectF(posX1, posY2, posX2, posY1);
+        moveOnGameOver = 1.0f;
     }
 
     public void drawPlayer(Canvas _c, Paint _p) {
@@ -53,6 +55,14 @@ public class Player {
             else if (mRectPlayer.bottom >= obstacle2[0].top) return true;
         }
         return false;
+    }
+
+    public void moveOnGameOver(){
+        mRectPlayer.top = mRectPlayer.top + moveOnGameOver;
+        mRectPlayer.bottom = mRectPlayer.bottom + moveOnGameOver;
+        mRectPlayer.left = mRectPlayer.left + 4.0f;
+        mRectPlayer.right = mRectPlayer.right + 4.0f;
+        moveOnGameOver = moveOnGameOver*1.1f;
     }
 }
 

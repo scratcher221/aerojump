@@ -16,7 +16,7 @@ public class GameThread extends Thread {
 
     @Override
     public void run() {
-        while(!gameView.mGameOver) {
+        while(true) {
             gameView.postInvalidate();
             try {
                 Thread.sleep(15);
