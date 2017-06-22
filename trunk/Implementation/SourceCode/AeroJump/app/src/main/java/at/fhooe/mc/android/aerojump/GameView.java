@@ -56,8 +56,7 @@ public class GameView extends View implements View.OnTouchListener{
         if(!mGameOver){
             mObstacle1.generateObstacles();
             mObstacle2.generateObstacles();
-            mGameOver = mPlayer.movePlayer(onTouchHold)
-                    || mPlayer.detectCollision(mObstacle1.getRectangles(), mObstacle2.getRectangles());
+            mGameOver = mPlayer.detectCollision(mObstacle1.getRectangles(), mObstacle2.getRectangles()) || mPlayer.movePlayer(onTouchHold);
         } else mPlayer.moveOnGameOver();
     }
 
