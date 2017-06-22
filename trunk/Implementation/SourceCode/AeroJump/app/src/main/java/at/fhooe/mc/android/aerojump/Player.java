@@ -1,5 +1,7 @@
 package at.fhooe.mc.android.aerojump;
 
+import android.app.Activity;
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
@@ -11,18 +13,17 @@ import android.graphics.RectF;
 public class Player {
 
     private RectF mRectPlayer;
-    private float mScreenWidth, mScreenHeight;
+    private float mScreenHeight;
     private float moveOnGameOver;
     private int highscore;
 
     public Player(float width, float height) {
         mScreenHeight = height;
-        mScreenWidth = width;
 
         float posX1, posX2, posY1, posY2;
         posX1 = width / 16;
         posX2 = posX1 + width / 12;
-        posY1 = height / 32 + height / 2;
+        posY1 = height / 2 + height / 32;
         posY2 = height / 2 - height / 32;
 
         mRectPlayer = new RectF(posX1, posY2, posX2, posY1);
@@ -46,6 +47,15 @@ public class Player {
         return false;
     }
 
+    public void moveOnGameOver(Context _c){
+        if (mRectPlayer.top > mScreenHeight) ((Activity)_c).finish();
+        mRectPlayer.top = mRectPlayer.top + moveOnGameOver;
+        mRectPlayer.bottom = mRectPlayer.bottom + moveOnGameOver;
+        mRectPlayer.left = mRectPlayer.left + 4.0f;
+        mRectPlayer.right = mRectPlayer.right + 4.0f;
+        moveOnGameOver = moveOnGameOver*1.1f;
+    }
+
     public boolean detectCollision(RectF[] obstacle1, RectF[] obstacle2) {
         if (mRectPlayer.right >= obstacle1[0].left && mRectPlayer.left <= obstacle1[0].right) {
             if (mRectPlayer.top <= obstacle1[1].bottom && mRectPlayer.bottom >= obstacle1[1].top) return true;
@@ -58,14 +68,6 @@ public class Player {
         if (Math.abs(mRectPlayer.left - obstacle1[1].right) < 5
                 || Math.abs(mRectPlayer.left - obstacle2[1].right) < 5) highscore++;
         return false;
-    }
-
-    public void moveOnGameOver(){
-        mRectPlayer.top = mRectPlayer.top + moveOnGameOver;
-        mRectPlayer.bottom = mRectPlayer.bottom + moveOnGameOver;
-        mRectPlayer.left = mRectPlayer.left + 4.0f;
-        mRectPlayer.right = mRectPlayer.right + 4.0f;
-        moveOnGameOver = moveOnGameOver*1.1f;
     }
 
     public int getHighscore(){

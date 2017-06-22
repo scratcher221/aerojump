@@ -55,19 +55,20 @@ public class GameView extends View implements View.OnTouchListener{
         mObstacle2.drawObstacle(canvas, mPaint);
         mPaint.setColor(Color.BLACK);
         mPlayer.drawPlayer(canvas, mPaint);
-        drawHighscore(mPlayer.getHighscore(), canvas);
+        showHighscore(mPlayer.getHighscore(), canvas);
 
         if(!mGameOver){
             mObstacle1.generateObstacles();
             mObstacle2.generateObstacles();
-            mGameOver = mPlayer.detectCollision(mObstacle1.getRectangles(), mObstacle2.getRectangles()) || mPlayer.movePlayer(onTouchHold);
-        } else mPlayer.moveOnGameOver();
+            mGameOver = mPlayer.detectCollision(mObstacle1.getRectangles(), mObstacle2.getRectangles())
+                    || mPlayer.movePlayer(onTouchHold);
+        } else mPlayer.moveOnGameOver(getContext());
     }
 
-    public void drawHighscore(int _score, Canvas _c){
+    private void showHighscore(int _score, Canvas _c){
         int dig3, dig2, dig1;
         Bitmap digit3, digit2, digit1;
-        RectF rect3 = new RectF(), rect2 = new RectF(), rect1 = new RectF();
+        RectF rect3 = null, rect2 = null, rect1 = null;
 
         if (_score < 10) rect1 = new RectF(mScreenWidth/2-48, 40, mScreenWidth/2+48, 168);
         else if (_score < 100) {
@@ -80,21 +81,19 @@ public class GameView extends View implements View.OnTouchListener{
         }
 
         dig1 = _score % 10;
-        _score = _score / 10;
-        dig2 = _score % 10;
-        _score = _score / 10;
-        dig3 = _score % 10;
+        dig2 = (_score/10) % 10;
+        dig3 = (_score/100) % 10;
 
-        digit1 = BitmapFactory.decodeResource(getResources(), getBitmapID(dig1));
-        digit2 = BitmapFactory.decodeResource(getResources(), getBitmapID(dig2));
-        digit3 = BitmapFactory.decodeResource(getResources(), getBitmapID(dig3));
+        digit1 = BitmapFactory.decodeResource(getResources(), getDrawableID(dig1));
+        digit2 = BitmapFactory.decodeResource(getResources(), getDrawableID(dig2));
+        digit3 = BitmapFactory.decodeResource(getResources(), getDrawableID(dig3));
 
         _c.drawBitmap(digit1, null, rect1, mPaint);
-        if (dig2 != 0) _c.drawBitmap(digit2, null, rect2, mPaint);
-        if (dig3 != 0) _c.drawBitmap(digit3, null, rect3, mPaint);
+        if (rect2 != null) _c.drawBitmap(digit2, null, rect2, mPaint);
+        if (rect3 != null) _c.drawBitmap(digit3, null, rect3, mPaint);
     }
 
-    public int getBitmapID(int _digit){
+    private int getDrawableID(int _digit){
         switch (_digit){
             case 0 : return R.drawable.digit0;
             case 1 : return R.drawable.digit1;

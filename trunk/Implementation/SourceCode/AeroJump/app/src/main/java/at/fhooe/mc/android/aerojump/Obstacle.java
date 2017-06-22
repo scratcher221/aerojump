@@ -21,6 +21,7 @@ public class Obstacle {
         float posX1, posX2, posY1, posY2;
         if (_isFirst) posX1 = _widthScreen/2 - _widthScreen/14;
         else posX1 = _widthScreen;
+        posX1 = posX1 + _widthScreen/2;
         posX2 = posX1 + _widthScreen/7;
 
         int rand = (int)(Math.random()*_heightScreen*0.7);
