@@ -11,6 +11,7 @@ import android.graphics.RectF;
 
 public class Obstacle {
 
+    private static float mSpeed;
     private RectF mRect1, mRect2;
     private float mScreenWidth, mScreenHeight;
 
@@ -32,6 +33,11 @@ public class Obstacle {
         posY1 = rand;
         posY2 = posY1 - _heightScreen*0.4f;
         mRect2 = new RectF(posX1, posY2, posX2, posY1);
+        mSpeed = 10.0f;
+    }
+
+    public static float getSpeed(){
+        return mSpeed;
     }
 
     public RectF[] getRectangles() {
@@ -50,8 +56,8 @@ public class Obstacle {
         int rand = (int)(Math.random()*mScreenHeight*0.7);
 
         if (mRect1.right > 0){
-            mRect1.left = mRect1.left - 10.0f;
-            mRect1.right = mRect1.right - 10.0f;
+            mRect1.left = mRect1.left - mSpeed;
+            mRect1.right = mRect1.right - mSpeed;
         } else {
             mRect1.left = mScreenWidth;
             mRect1.right = mScreenWidth + mScreenWidth/7;
@@ -60,13 +66,15 @@ public class Obstacle {
         }
 
         if (mRect2.right > 0){
-            mRect2.left = mRect2.left - 10.0f;
-            mRect2.right = mRect2.right - 10.0f;
+            mRect2.left = mRect2.left - mSpeed;
+            mRect2.right = mRect2.right - mSpeed;
         } else {
             mRect2.left = mScreenWidth;
             mRect2.right = mScreenWidth + mScreenWidth/7;
             mRect2.bottom = rand;
             mRect2.top = mRect2.bottom - mScreenHeight*0.4f;
         }
+
+        if (mSpeed < 25.0f) mSpeed = mSpeed + 0.002f;
     }
 }

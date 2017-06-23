@@ -15,16 +15,17 @@ public class Player {
     private RectF mRectPlayer;
     private float mScreenHeight;
     private float moveOnGameOver;
-    private int highscore;
+    private int mHighscore;
+    private float mSpeed;
 
-    public Player(float width, float height) {
-        mScreenHeight = height;
+    public Player(float _width, float _height) {
+        mScreenHeight = _height;
 
         float posX1, posX2, posY1, posY2;
-        posX1 = width / 16;
-        posX2 = posX1 + width / 12;
-        posY1 = height / 2 + height / 32;
-        posY2 = height / 2 - height / 32;
+        posX1 = _width / 16;
+        posX2 = posX1 + _width / 12;
+        posY1 = _height / 2 + _height / 32;
+        posY2 = _height / 2 - _height / 32;
 
         mRectPlayer = new RectF(posX1, posY2, posX2, posY1);
         moveOnGameOver = 1.0f;
@@ -34,15 +35,15 @@ public class Player {
         _c.drawRect(mRectPlayer, _p);
     }
 
-    public boolean movePlayer (boolean isTouched, boolean leftTouch) {
+    public boolean movePlayer (boolean _isTouched, boolean _leftTouch) {
         if (mRectPlayer.bottom < 0 || mRectPlayer.top > mScreenHeight) return true;
-        if (isTouched) {
-            if (leftTouch){
-                mRectPlayer.top = mRectPlayer.top - 12.0f;
-                mRectPlayer.bottom = mRectPlayer.bottom - 12.0f;
+        if (_isTouched) {
+            if (_leftTouch){
+                mRectPlayer.top = mRectPlayer.top - 16.0f;
+                mRectPlayer.bottom = mRectPlayer.bottom - 16.0f;
             } else {
-                mRectPlayer.top = mRectPlayer.top + 12.0f;
-                mRectPlayer.bottom = mRectPlayer.bottom + 12.0f;
+                mRectPlayer.top = mRectPlayer.top + 16.0f;
+                mRectPlayer.bottom = mRectPlayer.bottom + 16.0f;
             }
         } else {
             mRectPlayer.top = mRectPlayer.top + 2.0f;
@@ -69,13 +70,17 @@ public class Player {
             if (mRectPlayer.top <= obstacle2[1].bottom && mRectPlayer.bottom >= obstacle2[1].top) return true;
             else if (mRectPlayer.bottom >= obstacle2[0].top) return true;
         }
-        if (Math.abs(mRectPlayer.left - obstacle1[1].right) < 5
-                || Math.abs(mRectPlayer.left - obstacle2[1].right) < 5) highscore++;
+        if (Math.abs(mRectPlayer.left - obstacle1[1].right) < mSpeed/2
+                || Math.abs(mRectPlayer.left - obstacle2[1].right) < mSpeed/2) mHighscore++;
         return false;
     }
 
     public int getHighscore(){
-        return highscore;
+        return mHighscore;
+    }
+
+    public void setSpeed(float _s) {
+        mSpeed = _s;
     }
 
 }
