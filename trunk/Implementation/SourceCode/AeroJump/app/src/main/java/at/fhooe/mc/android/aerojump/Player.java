@@ -39,15 +39,15 @@ public class Player {
         if (mRectPlayer.bottom < 0 || mRectPlayer.top > mScreenHeight) return true;
         if (_isTouched) {
             if (_leftTouch){
-                mRectPlayer.top = mRectPlayer.top - 16.0f;
-                mRectPlayer.bottom = mRectPlayer.bottom - 16.0f;
+                mRectPlayer.top = mRectPlayer.top - 24.0f;
+                mRectPlayer.bottom = mRectPlayer.bottom - 24.0f;
             } else {
-                mRectPlayer.top = mRectPlayer.top + 16.0f;
-                mRectPlayer.bottom = mRectPlayer.bottom + 16.0f;
+                mRectPlayer.top = mRectPlayer.top + 24.0f;
+                mRectPlayer.bottom = mRectPlayer.bottom + 24.0f;
             }
         } else {
-            mRectPlayer.top = mRectPlayer.top + 2.0f;
-            mRectPlayer.bottom = mRectPlayer.bottom + 2.0f;
+            mRectPlayer.top = mRectPlayer.top + 1.5f;
+            mRectPlayer.bottom = mRectPlayer.bottom + 1.5f;
         }
         return false;
     }

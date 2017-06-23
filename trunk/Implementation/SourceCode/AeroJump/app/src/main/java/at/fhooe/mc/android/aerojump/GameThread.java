@@ -9,9 +9,8 @@ import android.util.Log;
 public class GameThread extends Thread {
 
     private static final String TAG = "GameThread";
-    private GameView gameView;
-    private GameActivity gameActivity;
     protected static Object mPauseLock;
+    private GameView gameView;
 
     public GameThread(GameView gv) {
         gameView = gv;
@@ -23,7 +22,7 @@ public class GameThread extends Thread {
         while(true) {
             gameView.postInvalidate();
             synchronized (mPauseLock) {
-                while (gameActivity.mPause) {
+                while (GameActivity.mPause) {
                     try {
                         mPauseLock.wait();
                     } catch (InterruptedException _e) {

@@ -33,7 +33,7 @@ public class Obstacle {
         posY1 = rand;
         posY2 = posY1 - _heightScreen*0.4f;
         mRect2 = new RectF(posX1, posY2, posX2, posY1);
-        mSpeed = 10.0f;
+        mSpeed = 15.0f;
     }
 
     public static float getSpeed(){
@@ -75,6 +75,6 @@ public class Obstacle {
             mRect2.top = mRect2.bottom - mScreenHeight*0.4f;
         }
 
-        if (mSpeed < 25.0f) mSpeed = mSpeed + 0.002f;
+        if (mSpeed < 30.0f) mSpeed = mSpeed + 0.004f;
     }
 }

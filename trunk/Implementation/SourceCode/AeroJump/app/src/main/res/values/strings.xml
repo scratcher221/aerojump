@@ -2,6 +2,4 @@
     <string name="app_name">AeroJump</string>
     <string name="main_activity_playButton">Play</string>
     <string name="highscore">0</string>
-    <string name="Pause">Pause</string>
-    <string name="Play">Play</string>
 </resources>
