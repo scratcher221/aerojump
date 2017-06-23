@@ -12,9 +12,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:fontFamily="serif-monospace"
         android:text="@string/highscore"
-        android:textAppearance="@android:style/TextAppearance.WindowTitle"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/black"
+        android:textSize="40sp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/activity_game_button_pause"
