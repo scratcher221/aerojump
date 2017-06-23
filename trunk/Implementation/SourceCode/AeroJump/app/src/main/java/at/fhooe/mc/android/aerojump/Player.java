@@ -34,15 +34,19 @@ public class Player {
         _c.drawRect(mRectPlayer, _p);
     }
 
-    public boolean movePlayer (boolean moved) {
-        if (moved) {
-            mRectPlayer.top = mRectPlayer.top - 8.0f;
-            mRectPlayer.bottom = mRectPlayer.bottom - 8.0f;
-            if (mRectPlayer.bottom < 0) return true;
+    public boolean movePlayer (boolean isTouched, boolean leftTouch) {
+        if (mRectPlayer.bottom < 0 || mRectPlayer.top > mScreenHeight) return true;
+        if (isTouched) {
+            if (leftTouch){
+                mRectPlayer.top = mRectPlayer.top - 12.0f;
+                mRectPlayer.bottom = mRectPlayer.bottom - 12.0f;
+            } else {
+                mRectPlayer.top = mRectPlayer.top + 12.0f;
+                mRectPlayer.bottom = mRectPlayer.bottom + 12.0f;
+            }
         } else {
-            mRectPlayer.top = mRectPlayer.top + 8.0f;
-            mRectPlayer.bottom = mRectPlayer.bottom + 8.0f;
-            if (mRectPlayer.top > mScreenHeight) return true;
+            mRectPlayer.top = mRectPlayer.top + 2.0f;
+            mRectPlayer.bottom = mRectPlayer.bottom + 2.0f;
         }
         return false;
     }

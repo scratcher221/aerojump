@@ -27,7 +27,7 @@ public class GameView extends View implements View.OnTouchListener{
     private Obstacle mObstacle1, mObstacle2;
     private Player mPlayer;
     private float mScreenWidth, mScreenHeight;
-    private boolean onTouchHold;
+    private boolean onTouchHold, leftTouch;
 
     public GameView(Context _context){
         super(_context);
@@ -58,6 +58,8 @@ public class GameView extends View implements View.OnTouchListener{
     public boolean onTouch(View _view, MotionEvent _event) {
         if (_event.getAction() == MotionEvent.ACTION_DOWN) onTouchHold = true;
         else if (_event.getAction() == MotionEvent.ACTION_UP) onTouchHold = false;
+        if (_event.getX() < mScreenWidth/2) leftTouch = true;
+        else leftTouch = false;
         return true;
     }
 
@@ -77,7 +79,7 @@ public class GameView extends View implements View.OnTouchListener{
             mObstacle1.generateObstacles();
             mObstacle2.generateObstacles();
             mGameOver = mPlayer.detectCollision(mObstacle1.getRectangles(), mObstacle2.getRectangles())
-                    || mPlayer.movePlayer(onTouchHold);
+                    || mPlayer.movePlayer(onTouchHold, leftTouch);
         } else mPlayer.moveOnGameOver(getContext());
     }
 
