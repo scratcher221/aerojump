@@ -1,9 +1,5 @@
 <resources>
     <string name="app_name">AeroJump</string>
-    <string name="main_activity_playButton">Play</string>
     <string name="highscore">0</string>
-    <string name="activity_main_scoreButton">Highscores</string>
-    <string name="acitivity_main_creditsButton">Credits</string>
-    <string name="activity_main_instructionsButton">Instructions</string>
     <string name="activity_main_header">AeroJump</string>
 </resources>
