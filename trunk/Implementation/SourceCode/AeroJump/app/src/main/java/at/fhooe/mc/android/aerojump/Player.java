@@ -2,6 +2,9 @@ package at.fhooe.mc.android.aerojump;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
@@ -13,13 +16,15 @@ import android.graphics.RectF;
 public class Player {
 
     private RectF mRectPlayer;
+    private Bitmap plane;
     private float mScreenHeight;
     private float moveOnGameOver;
     private int mHighscore;
     private float mSpeed;
 
-    public Player(float _width, float _height) {
+    public Player(float _width, float _height, Resources _res) {
         mScreenHeight = _height;
+        plane = BitmapFactory.decodeResource(_res, R.drawable.plane);
 
         float posX1, posX2, posY1, posY2;
         posX1 = _width / 16;
@@ -32,7 +37,8 @@ public class Player {
     }
 
     public void drawPlayer(Canvas _c, Paint _p) {
-        _c.drawRect(mRectPlayer, _p);
+        //_c.drawRect(mRectPlayer, _p);
+        _c.drawBitmap(plane, null, mRectPlayer, _p);
     }
 
     public boolean movePlayer (boolean _isTouched, boolean _leftTouch) {
@@ -46,8 +52,8 @@ public class Player {
                 mRectPlayer.bottom = mRectPlayer.bottom + 24.0f;
             }
         } else {
-            mRectPlayer.top = mRectPlayer.top + 1.5f;
-            mRectPlayer.bottom = mRectPlayer.bottom + 1.5f;
+            mRectPlayer.top = mRectPlayer.top + 1.0f;
+            mRectPlayer.bottom = mRectPlayer.bottom + 1.0f;
         }
         return false;
     }

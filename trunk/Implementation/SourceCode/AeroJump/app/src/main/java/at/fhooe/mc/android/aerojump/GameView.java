@@ -38,9 +38,9 @@ public class GameView extends View implements View.OnTouchListener{
         mScreenWidth = Resources.getSystem().getDisplayMetrics().widthPixels + getNavBarWidth(_context);
         mScreenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
 
-        mObstacle1 = new Obstacle(mScreenWidth, mScreenHeight, true);
-        mObstacle2 = new Obstacle(mScreenWidth, mScreenHeight, false);
-        mPlayer = new Player(mScreenWidth,mScreenHeight);
+        mObstacle1 = new Obstacle(mScreenWidth, mScreenHeight, true, getResources());
+        mObstacle2 = new Obstacle(mScreenWidth, mScreenHeight, false, getResources());
+        mPlayer = new Player(mScreenWidth, mScreenHeight, getResources());
 
         onTouchHold = false;
         mGameOver = false;
@@ -68,7 +68,7 @@ public class GameView extends View implements View.OnTouchListener{
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawColor(Color.WHITE);
+        setBackgroundResource(R.drawable.background);
         mPaint.setColor(Color.GREEN);
         mObstacle1.drawObstacle(canvas, mPaint);
         mObstacle2.drawObstacle(canvas, mPaint);

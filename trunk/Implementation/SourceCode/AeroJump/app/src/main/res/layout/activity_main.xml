@@ -2,15 +2,68 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    android:background="@color/colorBackground">
+    android:background="@drawable/background">
+
+    <TextView
+        android:id="@+id/activity_main_header_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="@string/activity_main_header"
+        android:textColor="@android:color/black"
+        android:textSize="72sp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/activity_main_playButton"
         style="@android:style/Widget.Button"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/main_activity_playButton" />
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_alignLeft="@+id/activity_main_header_textview"
+        android:layout_alignStart="@+id/activity_main_header_textview"
+        android:layout_below="@+id/activity_main_header_textview"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/main_buttons_background"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="@string/main_activity_playButton"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/activity_main_scoreButton"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_alignLeft="@+id/activity_main_playButton"
+        android:layout_alignStart="@+id/activity_main_playButton"
+        android:layout_below="@+id/activity_main_playButton"
+        android:background="@drawable/main_buttons_background"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="@string/activity_main_scoreButton"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/activity_main_instructionsButton"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_alignLeft="@+id/activity_main_scoreButton"
+        android:layout_alignStart="@+id/activity_main_scoreButton"
+        android:layout_below="@+id/activity_main_scoreButton"
+        android:background="@drawable/main_buttons_background"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="@string/activity_main_instructionsButton"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/activity_main_creditsButton"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_alignLeft="@+id/activity_main_instructionsButton"
+        android:layout_alignStart="@+id/activity_main_instructionsButton"
+        android:layout_below="@+id/activity_main_instructionsButton"
+        android:background="@drawable/main_buttons_background"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="@string/acitivity_main_creditsButton"
+        android:textStyle="bold" />
 
 </RelativeLayout>

@@ -1,6 +1,9 @@
 package at.fhooe.mc.android.aerojump;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
@@ -13,11 +16,14 @@ public class Obstacle {
 
     private static float mSpeed;
     private RectF mRect1, mRect2;
+    private Bitmap skyscraper, balloon;
     private float mScreenWidth, mScreenHeight;
 
-    public Obstacle(float _widthScreen, float _heightScreen, boolean _isFirst){
+    public Obstacle(float _widthScreen, float _heightScreen, boolean _isFirst, Resources _res){
         mScreenWidth = _widthScreen;
         mScreenHeight = _heightScreen;
+        skyscraper = BitmapFactory.decodeResource(_res, R.drawable.skyscraper);
+        balloon = BitmapFactory.decodeResource(_res, R.drawable.balloon);
 
         float posX1, posX2, posY1, posY2;
         if (_isFirst) posX1 = _widthScreen/2 - _widthScreen/14;
@@ -48,8 +54,10 @@ public class Obstacle {
     }
 
     public void drawObstacle(Canvas _c, Paint _p){
-        _c.drawRect(mRect1, _p);
-        _c.drawRect(mRect2, _p);
+        //_c.drawRect(mRect1, _p);
+        _c.drawBitmap(skyscraper, null, mRect1, _p);
+        //_c.drawRect(mRect2, _p);
+        _c.drawBitmap(balloon, null, mRect2, _p);
     }
 
     public void generateObstacles(){
@@ -62,7 +70,7 @@ public class Obstacle {
             mRect1.left = mScreenWidth;
             mRect1.right = mScreenWidth + mScreenWidth/7;
             mRect1.top = rand + (float)(mScreenHeight*0.3);
-            mRect1.bottom = mRect1.bottom + (float)(mScreenHeight*0.7);
+            mRect1.bottom = mRect1.top + (float)(mScreenHeight*0.7);
         }
 
         if (mRect2.right > 0){

@@ -36,6 +36,19 @@ public class GameActivity extends Activity implements View.OnClickListener{
         mButtonPause.setOnClickListener(this);
 
         gt.start();
+
+        synchronized (GameThread.mPauseLock) {
+            mPause = false;
+            GameThread.mPauseLock.notifyAll();
+            mButtonPause.setBackgroundResource(R.drawable.button_pause);
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mPause = true;
+        mButtonPause.setBackgroundResource(R.drawable.button_play);
     }
 
     @Override

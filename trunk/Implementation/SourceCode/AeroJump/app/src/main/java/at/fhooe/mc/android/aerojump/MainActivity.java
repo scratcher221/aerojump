@@ -20,6 +20,12 @@ public class MainActivity extends Activity implements View.OnClickListener{
         Button b = null;
         b = (Button)findViewById(R.id.activity_main_playButton);
         b.setOnClickListener(this);
+        b = (Button)findViewById(R.id.activity_main_scoreButton);
+        b.setOnClickListener(this);
+        b = (Button)findViewById(R.id.activity_main_instructionsButton);
+        b.setOnClickListener(this);
+        b = (Button)findViewById(R.id.activity_main_creditsButton);
+        b.setOnClickListener(this);
     }
 
     @Override
@@ -28,6 +34,19 @@ public class MainActivity extends Activity implements View.OnClickListener{
             case R.id.activity_main_playButton : {
                 Intent i = new Intent(this, GameActivity.class);
                 startActivity(i);
+                Log.i(TAG, "button play clicked");
+            } break;
+            case R.id.activity_main_scoreButton : {
+
+                Log.i(TAG, "button highscores clicked");
+            } break;
+            case R.id.activity_main_instructionsButton : {
+
+                Log.i(TAG, "button instructions clicked");
+            } break;
+            case R.id.activity_main_creditsButton : {
+
+                Log.i(TAG, "button credits clicked");
             } break;
             default : Log.e(TAG, "unexpected id encountered"); break;
         }
