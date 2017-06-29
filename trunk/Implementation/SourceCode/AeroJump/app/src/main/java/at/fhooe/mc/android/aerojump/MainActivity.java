@@ -39,7 +39,8 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 Log.i(TAG, "button highscores clicked");
             } break;
             case R.id.activity_main_infoButton : {
-
+                Intent i = new Intent(this, InfoActivity.class);
+                startActivity(i);
                 Log.i(TAG, "button instructions clicked");
             } break;
             default : Log.e(TAG, "unexpected id encountered"); break;

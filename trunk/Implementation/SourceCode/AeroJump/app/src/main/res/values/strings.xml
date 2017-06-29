@@ -2,4 +2,5 @@
     <string name="app_name">AeroJump</string>
     <string name="highscore">0</string>
     <string name="activity_main_header">AeroJump</string>
+    <string name="activity_info_header">How To Play</string>
 </resources>
