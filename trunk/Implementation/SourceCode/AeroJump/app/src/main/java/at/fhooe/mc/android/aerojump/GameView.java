@@ -1,6 +1,7 @@
 package at.fhooe.mc.android.aerojump;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,6 +19,8 @@ import org.w3c.dom.Text;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import at.fhooe.mc.android.aerojump.db.HighscoreActivity;
+
 
 /**
  * Created by Bliznac on 17.06.2017.
@@ -26,9 +29,9 @@ import java.util.TimerTask;
 public class GameView extends View implements View.OnTouchListener{
 
     public boolean mGameOver;
+    public Player mPlayer;
     private Paint mPaint;
     private Obstacle mObstacle1, mObstacle2;
-    private Player mPlayer;
     private float mScreenWidth, mScreenHeight;
     private boolean onTouchHold, leftTouch;
 

@@ -3,4 +3,7 @@
     <string name="highscore">0</string>
     <string name="activity_main_header">AeroJump</string>
     <string name="activity_info_header">How To Play</string>
+    <string name="activity_highscores_header">Highscores</string>
+    <string name="activity_enter_highscore_submit">Submit</string>
+    <string name="new_player">Enter Player Name:</string>
 </resources>

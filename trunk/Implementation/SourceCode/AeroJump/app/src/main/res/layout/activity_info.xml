@@ -11,36 +11,36 @@
         android:id="@+id/activity_info_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="@string/activity_info_header"
         android:textColor="@android:color/black"
         android:textSize="30sp"
-        android:textStyle="bold"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/activity_info_instructionA"
         android:layout_width="240dp"
         android:layout_height="140dp"
-        android:src="@drawable/instruction_touchleft"
+        android:layout_alignTop="@+id/activity_info_instructionB"
         android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
-        android:layout_alignTop="@+id/activity_info_instructionB"
+        android:layout_toEndOf="@+id/activity_info_instructionB"
         android:layout_toRightOf="@+id/activity_info_instructionB"
-        android:layout_toEndOf="@+id/activity_info_instructionB" />
+        android:src="@drawable/instruction_touchleft" />
 
     <ImageView
         android:id="@+id/activity_info_instructionB"
         android:layout_width="240dp"
         android:layout_height="140dp"
-        android:src="@drawable/instruction_touchright"
-        android:layout_marginLeft="46dp"
-        android:layout_marginStart="46dp"
-        android:layout_below="@+id/activity_info_header"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="45dp" />
+        android:layout_below="@+id/activity_info_header"
+        android:layout_marginLeft="46dp"
+        android:layout_marginStart="46dp"
+        android:layout_marginTop="45dp"
+        android:src="@drawable/instruction_touchright" />
 
 </RelativeLayout>

@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="at.fhooe.mc.android.aerojump">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/aerojump_icon"
@@ -20,6 +23,12 @@
         <activity android:name=".GameActivity"
             android:screenOrientation="landscape"></activity>
         <activity android:name=".InfoActivity"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".db.HighscoreActivity"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".db.EnterPlayerNameActivity"
             android:screenOrientation="landscape">
         </activity>
     </application>
