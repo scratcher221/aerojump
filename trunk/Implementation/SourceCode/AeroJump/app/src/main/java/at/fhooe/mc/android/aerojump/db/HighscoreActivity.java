@@ -3,6 +3,7 @@ package at.fhooe.mc.android.aerojump.db;
 import android.app.Activity;
 import android.os.Bundle;
 import android.renderscript.ScriptGroup;
+import android.util.Log;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
@@ -26,6 +27,7 @@ public class HighscoreActivity extends Activity {
         dT.start();
 
         final TextView tv = (TextView) findViewById(R.id.activity_highscores_content);
+
         final Timer t = new Timer();
         t.scheduleAtFixedRate(new TimerTask() {
             @Override
@@ -33,7 +35,10 @@ public class HighscoreActivity extends Activity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if (!dT.isAlive()) tv.setText(GetHighscoresThread.HIGHSCORES);
+                        if (!dT.isAlive()) {
+                            t.cancel();
+                            tv.setText(GetHighscoresThread.HIGHSCORES);
+                        }
                         else tv.setText("Loading Highscores...");
                     }
                 });

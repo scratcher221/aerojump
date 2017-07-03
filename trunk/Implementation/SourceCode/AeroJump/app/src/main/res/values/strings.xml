@@ -6,4 +6,6 @@
     <string name="activity_highscores_header">Highscores</string>
     <string name="activity_enter_highscore_submit">Submit</string>
     <string name="new_player">Enter Player Name:</string>
+    <string name="activity_highscores_names">Name</string>
+    <string name="activity_highscores_scores">Highscore</string>
 </resources>
