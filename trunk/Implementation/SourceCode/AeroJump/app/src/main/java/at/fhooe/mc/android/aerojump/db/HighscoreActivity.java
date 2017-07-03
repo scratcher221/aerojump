@@ -25,7 +25,7 @@ public class HighscoreActivity extends Activity {
 
 
 
-//        TextView tv = (TextView)findViewById(R.id.activity_highscores_content);
-//        tv.setText(MainActivity.PLAYERNAME);
+        TextView tv = (TextView)findViewById(R.id.activity_highscores_content);
+        tv.setText(GetHighscoresThread.HIGHSCORES);
     }
 }

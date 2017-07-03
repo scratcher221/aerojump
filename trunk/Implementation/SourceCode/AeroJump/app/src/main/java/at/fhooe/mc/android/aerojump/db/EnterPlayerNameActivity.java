@@ -46,8 +46,6 @@ public class EnterPlayerNameActivity extends Activity implements View.OnClickLis
                     e.printStackTrace();
                 }
                 Intent i = new Intent(this, MainActivity.class);
-                InsertHighscoresThread iT = new InsertHighscoresThread(mName, String.valueOf(mScore));
-                iT.start();
                 startActivity(i);
             } break;
             default:
