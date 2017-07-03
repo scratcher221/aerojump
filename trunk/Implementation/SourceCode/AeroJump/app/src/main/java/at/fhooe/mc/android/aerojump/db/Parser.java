@@ -1,7 +1,5 @@
 package at.fhooe.mc.android.aerojump.db;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 
 /**
@@ -29,8 +27,9 @@ public class Parser {
     }
 
     private int[] getScoresArray(){
-        ArrayList<Integer> scores = new ArrayList<Integer>();
+        if (phpReturn == null) return new int[]{};
 
+        ArrayList<Integer> scores = new ArrayList<Integer>();
         int start = phpReturn.indexOf(":") + 2;
         int stop = phpReturn.indexOf(";", start);
 
@@ -52,14 +51,15 @@ public class Parser {
         if (str.length >= 8) length = 8;
         else length = str.length;
         for (int i=0; i<length; i++){
-            names.append(i+1 + ". " + str[i] + "\n");
+            names.append(str[i] + "\n");
         }
         return names.toString();
     }
 
     private String[] getNamesArray(){
-        ArrayList<String> names = new ArrayList<String>();
+        if (phpReturn == null) return new String[]{"Error: No Database Connection"};
 
+        ArrayList<String> names = new ArrayList<String>();
         int start = 0;
         int stop = phpReturn.indexOf(":", start);
 
@@ -70,7 +70,7 @@ public class Parser {
         }
 
         String[] s = new String[names.size()];
-        for (int i=0; i < s.length; i++) s[i] = names.get(i);
+        for (int i=0; i < s.length; i++) s[i] = i+1 + ". " + names.get(i);
         return s;
     }
 
