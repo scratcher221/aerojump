@@ -26,7 +26,8 @@ public class HighscoreActivity extends Activity {
         final GetHighscoresThread dT = new GetHighscoresThread(this);
         dT.start();
 
-        final TextView tv = (TextView) findViewById(R.id.activity_highscores_content);
+        final TextView tvNames = (TextView) findViewById(R.id.activity_highscores_names);
+        final TextView tvScores = (TextView) findViewById(R.id.activity_highscores_scores);
 
         final Timer t = new Timer();
         t.scheduleAtFixedRate(new TimerTask() {
@@ -37,9 +38,14 @@ public class HighscoreActivity extends Activity {
                     public void run() {
                         if (!dT.isAlive()) {
                             t.cancel();
-                            tv.setText(GetHighscoresThread.HIGHSCORES);
+                            Parser p = new Parser(GetHighscoresThread.HIGHSCORES);
+                            tvNames.setText(p.getNames());
+                            tvScores.setText(p.getScores());
                         }
-                        else tv.setText("Loading Highscores...");
+                        else {
+                            tvNames.setText("Loading Names...");
+                            tvScores.setText("Loading Scores...");
+                        }
                     }
                 });
             }

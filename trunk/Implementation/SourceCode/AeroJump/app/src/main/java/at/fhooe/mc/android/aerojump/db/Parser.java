@@ -16,7 +16,19 @@ public class Parser {
         phpReturn = _s;
     }
 
-    public int[] getScores(){
+    public String getScores(){
+        int[] str = getScoresArray();
+        StringBuffer scores = new StringBuffer();
+        int length;
+        if (str.length >= 8) length = 8;
+        else length = str.length;
+        for (int i=0; i<length; i++){
+            scores.append(str[i] + "\n");
+        }
+        return scores.toString();
+    }
+
+    private int[] getScoresArray(){
         ArrayList<Integer> scores = new ArrayList<Integer>();
 
         int start = phpReturn.indexOf(":") + 2;
@@ -33,7 +45,19 @@ public class Parser {
         return s;
     }
 
-    public String[] getNames(){
+    public String getNames(){
+        String[] str = getNamesArray();
+        StringBuffer names = new StringBuffer();
+        int length;
+        if (str.length >= 8) length = 8;
+        else length = str.length;
+        for (int i=0; i<length; i++){
+            names.append(i+1 + ". " + str[i] + "\n");
+        }
+        return names.toString();
+    }
+
+    private String[] getNamesArray(){
         ArrayList<String> names = new ArrayList<String>();
 
         int start = 0;
