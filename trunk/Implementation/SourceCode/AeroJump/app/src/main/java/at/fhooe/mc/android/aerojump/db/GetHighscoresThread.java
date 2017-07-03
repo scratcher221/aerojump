@@ -37,7 +37,7 @@ public class GetHighscoresThread extends Thread{
             String result="";
             String line="";
             while((line = bufferedReader.readLine())!= null) {
-                result += line+"\n";
+                result += line+";";
             }
             bufferedReader.close();
             inputStream.close();
