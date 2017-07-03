@@ -2,12 +2,17 @@ package at.fhooe.mc.android.aerojump;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
+
+import at.fhooe.mc.android.aerojump.db.EnterPlayerNameActivity;
+import at.fhooe.mc.android.aerojump.db.HighscoreActivity;
+import at.fhooe.mc.android.aerojump.db.InsertHighscoresThread;
 
 /**
  * Created by peter on 21.06.2017.
@@ -21,6 +26,7 @@ public class Player {
     private float moveOnGameOver;
     private int mHighscore;
     private float mSpeed;
+    private boolean mgameOver;
 
     public Player(float _width, float _height, Resources _res) {
         mScreenHeight = _height;
@@ -34,6 +40,7 @@ public class Player {
 
         mRectPlayer = new RectF(posX1, posY2, posX2, posY1);
         moveOnGameOver = 1.0f;
+        mgameOver = false;
     }
 
     public void drawPlayer(Canvas _c, Paint _p) {
@@ -59,7 +66,14 @@ public class Player {
     }
 
     public void moveOnGameOver(Context _c){
-        if (mRectPlayer.top > mScreenHeight) ((Activity)_c).finish();
+        if (mRectPlayer.top > mScreenHeight && !mgameOver) {
+            InsertHighscoresThread insertHighscoresThread = new InsertHighscoresThread(MainActivity.PLAYERNAME, String.valueOf(this.getHighscore()));
+            insertHighscoresThread.start();
+            Intent i = new Intent(_c, HighscoreActivity.class);
+            _c.startActivity(i);
+            ((Activity)_c).finish();
+            mgameOver = true;
+        }
         mRectPlayer.top = mRectPlayer.top + moveOnGameOver;
         mRectPlayer.bottom = mRectPlayer.bottom + moveOnGameOver;
         mRectPlayer.left = mRectPlayer.left + 4.0f;
