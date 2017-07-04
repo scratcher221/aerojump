@@ -61,7 +61,6 @@ public class MainActivity extends Activity implements View.OnClickListener{
             Log.e(TAG, "File PLAYERNAME not found ... will be created");
             Intent i = new Intent(this, EnterPlayerNameActivity.class);
             EnterPlayerNameActivity.showOnlyEditText = true;
-            finish();
             startActivity(i);
         }
         catch (Exception e) {

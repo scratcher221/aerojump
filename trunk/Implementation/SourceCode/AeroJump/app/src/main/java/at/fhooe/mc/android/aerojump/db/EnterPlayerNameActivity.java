@@ -91,9 +91,7 @@ public class EnterPlayerNameActivity extends Activity implements View.OnClickLis
                     edt.putBoolean("radio_control", GameView.control);
                     edt.commit();
 
-                    Intent i = new Intent(this, MainActivity.class);
                     finish();
-                    startActivity(i);
                 } else Toast.makeText(this, "Enter your name first!", Toast.LENGTH_SHORT).show();
             } break;
             case R.id.activity_enter_playername_radio_control_a: {
