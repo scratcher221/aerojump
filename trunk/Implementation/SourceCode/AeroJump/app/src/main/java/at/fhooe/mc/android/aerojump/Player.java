@@ -10,7 +10,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
-import at.fhooe.mc.android.aerojump.db.EnterPlayerNameActivity;
 import at.fhooe.mc.android.aerojump.db.HighscoreActivity;
 import at.fhooe.mc.android.aerojump.db.InsertHighscoresThread;
 
@@ -67,11 +66,11 @@ public class Player {
 
     public void moveOnGameOver(Context _c){
         if (mRectPlayer.top > mScreenHeight && !mgameOver) {
-            InsertHighscoresThread insertHighscoresThread = new InsertHighscoresThread(MainActivity.PLAYERNAME, String.valueOf(this.getHighscore()));
+            final InsertHighscoresThread insertHighscoresThread = new InsertHighscoresThread(MainActivity.PLAYERNAME, String.valueOf(this.getHighscore()));
             insertHighscoresThread.start();
             Intent i = new Intent(_c, HighscoreActivity.class);
-            _c.startActivity(i);
             ((Activity)_c).finish();
+            _c.startActivity(i);
             mgameOver = true;
         }
         mRectPlayer.top = mRectPlayer.top + moveOnGameOver;

@@ -65,6 +65,7 @@ public class EnterPlayerNameActivity extends Activity implements View.OnClickLis
             case R.id.activity_enter_playername_button_submit: {
                 mName = ((EditText)findViewById(R.id.activity_enter_playername_textbox)).getText().toString();
                 if (!mName.equals("")){
+                    MainActivity.PLAYERNAME = mName;
                     Intent mIntent = getIntent();
                     mScore = mIntent.getIntExtra("highscore", 0);
                     FileOutputStream outputStream;
