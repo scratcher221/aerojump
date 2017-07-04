@@ -93,6 +93,7 @@ public class EnterPlayerNameActivity extends Activity implements View.OnClickLis
 
                     Intent i = new Intent(this, MainActivity.class);
                     startActivity(i);
+                    finish();
                 } else Toast.makeText(this, "Enter your name first!", Toast.LENGTH_SHORT).show();
             } break;
             case R.id.activity_enter_playername_radio_control_a: {

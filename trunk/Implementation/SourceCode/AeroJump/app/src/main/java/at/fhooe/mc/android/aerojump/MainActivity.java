@@ -62,6 +62,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
             Intent i = new Intent(this, EnterPlayerNameActivity.class);
             EnterPlayerNameActivity.showOnlyEditText = true;
             startActivity(i);
+            finish();
         }
         catch (Exception e) {
             e.printStackTrace();
