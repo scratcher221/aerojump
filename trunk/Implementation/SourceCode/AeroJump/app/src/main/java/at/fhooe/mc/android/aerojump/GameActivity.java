@@ -44,7 +44,7 @@ public class GameActivity extends Activity implements View.OnClickListener{
         gt.start();
 
         backgroundMusic = MediaPlayer.create(this, R.raw.background_music);
-        //if (playMusic) backgroundMusic.start();
+        backgroundMusic.setLooping(true);
 
         synchronized (GameThread.mPauseLock) {
             mPause = false;
