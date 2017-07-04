@@ -18,6 +18,7 @@ import at.fhooe.mc.android.aerojump.db.HighscoreActivity;
 public class GameActivity extends Activity implements View.OnClickListener{
 
     public final static String TAG = "GameActivity";
+    public static boolean playMusic;
     protected static TextView mHighscore;
     protected static boolean mPause;
     private Button mButtonPause;

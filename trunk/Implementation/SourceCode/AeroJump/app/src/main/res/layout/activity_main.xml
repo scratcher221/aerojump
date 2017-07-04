@@ -1,42 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:background="@drawable/background">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="25dp">
 
     <TextView
         android:id="@+id/activity_main_header_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="36dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="@string/activity_main_header"
         android:textColor="@android:color/black"
         android:textSize="72sp"
-        android:textStyle="bold"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="36dp" />
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/activity_main_playButton"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_below="@+id/activity_main_header_textview"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="66dp"
         android:background="@drawable/main_button_play_background"
         android:fontFamily="sans-serif-smallcaps"
         android:textSize="30sp"
-        android:textStyle="bold"
-        android:layout_marginTop="66dp"
-        android:layout_below="@+id/activity_main_header_textview"
-        android:layout_centerHorizontal="true" />
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/activity_main_scoreButton"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_alignBottom="@+id/activity_main_playButton"
-        android:background="@drawable/main_button_scores_background"
         android:layout_toEndOf="@+id/activity_main_playButton"
         android:layout_toRightOf="@+id/activity_main_playButton"
+        android:background="@drawable/main_button_scores_background"
         android:textStyle="bold" />
 
     <Button
@@ -51,11 +55,11 @@
 
     <Button
         android:id="@+id/activity_main_settingsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:text="Settings" />
+        android:background="@drawable/button_settings" />
 
 </RelativeLayout>

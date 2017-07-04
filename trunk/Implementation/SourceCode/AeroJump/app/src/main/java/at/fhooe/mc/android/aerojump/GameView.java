@@ -28,6 +28,7 @@ import at.fhooe.mc.android.aerojump.db.HighscoreActivity;
 
 public class GameView extends View implements View.OnTouchListener{
 
+    public static boolean control;
     public boolean mGameOver;
     public Player mPlayer;
     private Paint mPaint;
@@ -65,6 +66,7 @@ public class GameView extends View implements View.OnTouchListener{
         else if (_event.getAction() == MotionEvent.ACTION_UP) onTouchHold = false;
         if (_event.getX() < mScreenWidth/2) leftTouch = true;
         else leftTouch = false;
+        if (control) leftTouch = !leftTouch;
         return true;
     }
 

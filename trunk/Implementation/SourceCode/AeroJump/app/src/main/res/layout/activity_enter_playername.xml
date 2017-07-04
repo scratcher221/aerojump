@@ -8,17 +8,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingLeft="75dp"
-        android:paddingRight="75dp"
-        android:paddingTop="125dp">
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:paddingTop="25dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <TextView
             android:id="@+id/activity_enter_playername_header"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/new_player"
             android:textColor="@android:color/black"
-            android:textSize="24sp" />
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/activity_enter_playername_textbox"
@@ -26,13 +29,48 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:maxLength="20"
-            android:text="Name" />
+            android:maxLength="20" />
+
+        <CheckBox
+            android:id="@+id/activity_enter_playername_enable_sound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_enable_sound"
+            android:textAlignment="viewStart"
+            android:textColor="@android:color/black"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/activity_enter_playername_control_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/settings_control"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/activity_enter_playername_radio_control_a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_control_a"
+            android:textColor="@android:color/black"
+            android:textSize="14sp" />
+
+        <RadioButton
+            android:id="@+id/activity_enter_playername_radio_control_b"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_control_b"
+            android:textColor="@android:color/black"
+            android:textSize="14sp" />
 
         <Button
             android:id="@+id/activity_enter_playername_button_submit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/button_submit_background"
             android:text="@string/activity_enter_highscore_submit" />
 
     </LinearLayout>

@@ -5,7 +5,11 @@
     <string name="activity_info_header">How To Play</string>
     <string name="activity_highscores_header">Highscores</string>
     <string name="activity_enter_highscore_submit">Submit</string>
-    <string name="new_player">Enter Player Name:</string>
+    <string name="new_player">Player Name:</string>
     <string name="activity_highscores_names">Name</string>
     <string name="activity_highscores_scores">Highscore</string>
+    <string name="settings_enable_sound">Enable Sound</string>
+    <string name="settings_control">Control</string>
+    <string name="settings_control_a">Left Up - Right Down</string>
+    <string name="settings_control_b">Left Down - Right Up</string>
 </resources>
