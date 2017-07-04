@@ -23,7 +23,7 @@ public class HighscoreActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_highscores);
 
-        final GetHighscoresThread dT = new GetHighscoresThread(this);
+        final GetHighscoresThread dT = new GetHighscoresThread();
         dT.start();
 
         final TextView tvNames = (TextView) findViewById(R.id.activity_highscores_names);

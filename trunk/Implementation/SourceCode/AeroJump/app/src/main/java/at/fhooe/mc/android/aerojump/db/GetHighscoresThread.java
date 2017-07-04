@@ -21,11 +21,6 @@ import at.fhooe.mc.android.aerojump.db.HighscoreActivity;
 public class GetHighscoresThread extends Thread{
     private static final String TAG = "GetHighscoresThread";
     public static String HIGHSCORES;
-    private HighscoreActivity highscoreActivity;
-
-    public GetHighscoresThread(HighscoreActivity hA) {
-        highscoreActivity = hA;
-    }
 
     @Override
     public void run() {

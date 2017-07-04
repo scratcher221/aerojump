@@ -32,6 +32,8 @@ public class MainActivity extends Activity implements View.OnClickListener{
         b.setOnClickListener(this);
         b = (Button)findViewById(R.id.activity_main_infoButton);
         b.setOnClickListener(this);
+        b = (Button)findViewById(R.id.activity_main_settingsButton);
+        b.setOnClickListener(this);
 
         String ret = "";
         try {
@@ -78,6 +80,11 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 Intent i = new Intent(this, InfoActivity.class);
                 startActivity(i);
                 Log.i(TAG, "button instructions clicked");
+            } break;
+            case R.id.activity_main_settingsButton : {
+                Intent i = new Intent(this, EnterPlayerNameActivity.class);
+                startActivity(i);
+                Log.i(TAG, "button settings clicked");
             } break;
             default : Log.e(TAG, "unexpected id encountered"); break;
         }
