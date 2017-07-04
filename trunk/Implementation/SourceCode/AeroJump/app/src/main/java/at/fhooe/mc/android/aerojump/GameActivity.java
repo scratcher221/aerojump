@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,6 +23,7 @@ public class GameActivity extends Activity implements View.OnClickListener{
     protected static TextView mHighscore;
     protected static boolean mPause;
     private Button mButtonPause;
+    private MediaPlayer backgroundMusic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,9 @@ public class GameActivity extends Activity implements View.OnClickListener{
 
         gt.start();
 
+        backgroundMusic = MediaPlayer.create(this, R.raw.background_music);
+        //if (playMusic) backgroundMusic.start();
+
         synchronized (GameThread.mPauseLock) {
             mPause = false;
             GameThread.mPauseLock.notifyAll();
@@ -58,6 +63,7 @@ public class GameActivity extends Activity implements View.OnClickListener{
     @Override
     protected void onResume() {
         super.onResume();
+        if (playMusic) backgroundMusic.start();
         View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_FULLSCREEN
@@ -86,7 +92,14 @@ public class GameActivity extends Activity implements View.OnClickListener{
     }
 
     @Override
+    protected void onStop() {
+        super.onStop();
+        if (playMusic) backgroundMusic.pause();
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
+        if (playMusic) backgroundMusic.stop();
     }
 }

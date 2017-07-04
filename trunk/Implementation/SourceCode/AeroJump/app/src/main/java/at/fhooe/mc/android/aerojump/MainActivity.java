@@ -1,7 +1,9 @@
 package at.fhooe.mc.android.aerojump;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -34,6 +36,10 @@ public class MainActivity extends Activity implements View.OnClickListener{
         b.setOnClickListener(this);
         b = (Button)findViewById(R.id.activity_main_settingsButton);
         b.setOnClickListener(this);
+
+        SharedPreferences sp = getSharedPreferences(EnterPlayerNameActivity.MY_SHARED_PREF_KEY, Context.MODE_PRIVATE);
+        GameActivity.playMusic = sp.getBoolean("playMusic", false);
+        GameView.control = sp.getBoolean("radio_control", false);
 
         String ret = "";
         try {
