@@ -1,26 +1,14 @@
 package at.fhooe.mc.android.aerojump;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.RectF;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.TextView;
-
-import org.w3c.dom.Text;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 import at.fhooe.mc.android.aerojump.db.HighscoreActivity;
-
 
 /**
  * Created by Bliznac on 17.06.2017.

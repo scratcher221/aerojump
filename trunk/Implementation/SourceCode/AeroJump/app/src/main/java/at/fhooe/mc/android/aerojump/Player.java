@@ -70,6 +70,8 @@ public class Player {
             insertHighscoresThread.start();
             Intent i = new Intent(_c, HighscoreActivity.class);
             ((Activity)_c).finish();
+            HighscoreActivity.setInsertHighscoreThread(insertHighscoresThread);
+            HighscoreActivity.setLastHighscore(mHighscore);
             _c.startActivity(i);
             mgameOver = true;
         }

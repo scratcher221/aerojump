@@ -12,4 +12,6 @@
     <string name="settings_control">Control</string>
     <string name="settings_control_a">Left Up - Right Down</string>
     <string name="settings_control_b">Left Down - Right Up</string>
+    <string name="activity_highscores_lastplayed">0</string>
+    <string name="activity_highscores_last_header">Last Played</string>
 </resources>

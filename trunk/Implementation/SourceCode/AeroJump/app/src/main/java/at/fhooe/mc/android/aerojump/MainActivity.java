@@ -80,6 +80,8 @@ public class MainActivity extends Activity implements View.OnClickListener{
             } break;
             case R.id.activity_main_scoreButton : {
                 Intent i = new Intent(this, HighscoreActivity.class);
+                SharedPreferences sp = getSharedPreferences(HighscoreActivity.MY_SHARED_PREF_KEY, Context.MODE_PRIVATE);
+                HighscoreActivity.setLastHighscore(sp.getInt("lastHighscore", 0));
                 startActivity(i);
                 Log.i(TAG, "button highscores clicked");
             } break;
