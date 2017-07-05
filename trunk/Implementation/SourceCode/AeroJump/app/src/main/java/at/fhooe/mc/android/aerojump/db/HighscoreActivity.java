@@ -20,6 +20,7 @@ public class HighscoreActivity extends Activity {
     private static InsertHighscoresThread mInsertHighscoreThread;
     private boolean isLoading = false;
     private static int lastHighscore;
+    private static String lastPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,10 +71,11 @@ public class HighscoreActivity extends Activity {
         SharedPreferences sp = getSharedPreferences(MY_SHARED_PREF_KEY, Context.MODE_PRIVATE);
         SharedPreferences.Editor edt = sp.edit();
         edt.putInt("lastHighscore", lastHighscore);
+        edt.putString("lastPlayer", lastPlayer);
         edt.commit();
 
         TextView lastScore = (TextView)findViewById(R.id.activity_highscores_lastplayed);
-        lastScore.setText(MainActivity.PLAYERNAME + "\n" + String.valueOf(lastHighscore));
+        lastScore.setText(sp.getString("lastPlayer", "") + "\n" + String.valueOf(lastHighscore));
     }
 
     public static void setInsertHighscoreThread(InsertHighscoresThread _it){
@@ -82,5 +84,9 @@ public class HighscoreActivity extends Activity {
 
     public static void setLastHighscore(int _h){
         lastHighscore = _h;
+    }
+
+    public static void setLastPlayer(String _name){
+        lastPlayer = _name;
     }
 }

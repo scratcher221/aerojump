@@ -72,6 +72,7 @@ public class Player {
             ((Activity)_c).finish();
             HighscoreActivity.setInsertHighscoreThread(insertHighscoresThread);
             HighscoreActivity.setLastHighscore(mHighscore);
+            HighscoreActivity.setLastPlayer(MainActivity.PLAYERNAME);
             _c.startActivity(i);
             mgameOver = true;
         }
