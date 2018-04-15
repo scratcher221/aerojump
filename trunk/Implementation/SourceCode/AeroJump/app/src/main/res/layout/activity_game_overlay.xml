@@ -29,4 +29,13 @@
         android:textAllCaps="false"
         android:visibility="visible" />
 
+    <Button
+        android:id="@+id/activity_game_button_play"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/button_play"
+        android:visibility="gone" />
+
 </RelativeLayout>

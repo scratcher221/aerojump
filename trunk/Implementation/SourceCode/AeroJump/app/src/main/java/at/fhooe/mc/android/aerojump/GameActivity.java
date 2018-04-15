@@ -1,10 +1,6 @@
 package at.fhooe.mc.android.aerojump;
 
-import android.app.ActionBar;
 import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,15 +10,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import at.fhooe.mc.android.aerojump.db.HighscoreActivity;
-
 public class GameActivity extends Activity implements View.OnClickListener{
 
     public final static String TAG = "GameActivity";
     public static boolean playMusic;
     protected static TextView mHighscore;
     protected static boolean mPause;
-    private Button mButtonPause;
+    private Button mButtonPause, mButtonPlay;
     private MediaPlayer backgroundMusic;
 
     @Override
@@ -40,6 +34,8 @@ public class GameActivity extends Activity implements View.OnClickListener{
         mHighscore = (TextView)findViewById(R.id.activity_game_text_highscore);
         mButtonPause = (Button)findViewById(R.id.activity_game_button_pause);
         mButtonPause.setOnClickListener(this);
+        mButtonPlay = (Button)findViewById(R.id.activity_game_button_play);
+        mButtonPlay.setOnClickListener(this);
 
         gt.start();
 
@@ -74,19 +70,20 @@ public class GameActivity extends Activity implements View.OnClickListener{
     public void onClick(View _v) {
         switch(_v.getId()) {
             case R.id.activity_game_button_pause: {
-                if (!mPause) {
-                    mPause = true;
-                    _v.setBackgroundResource(R.drawable.button_play);
-                } else {
-                    synchronized (GameThread.mPauseLock) {
-                        mPause = false;
-                        GameThread.mPauseLock.notifyAll();
-                        _v.setBackgroundResource(R.drawable.button_pause);
-                    }
-                    Log.i(TAG, "Play");
-                }
+                mPause = true;
+                mButtonPause.setVisibility(View.GONE);
+                mButtonPlay.setVisibility(View.VISIBLE);
                 Log.i(TAG, "Pause");
-            }break;
+            } break;
+            case R.id.activity_game_button_play: {
+                synchronized (GameThread.mPauseLock) {
+                    mPause = false;
+                    GameThread.mPauseLock.notifyAll();
+                    mButtonPause.setVisibility(View.VISIBLE);
+                    mButtonPlay.setVisibility(View.GONE);
+                }
+                Log.i(TAG, "Play");
+            } break;
             default: Log.e(TAG, "unexpected button id encountered");
         }
     }

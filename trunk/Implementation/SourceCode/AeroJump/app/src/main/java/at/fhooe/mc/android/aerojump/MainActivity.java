@@ -5,11 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -66,6 +68,15 @@ public class MainActivity extends Activity implements View.OnClickListener{
         catch (Exception e) {
             e.printStackTrace();
         }
+
+        /*File f = new File(Environment.getExternalStorageDirectory(), "AeroJump");
+        if (!f.exists()) {
+            if (f.mkdir()){
+                Log.i(TAG, "Successfull");
+            } else {
+                Log.i(TAG, "Not Successfull");
+            }
+        }*/
 
         PLAYERNAME = ret;
     }

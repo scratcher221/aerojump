@@ -1,9 +1,11 @@
 package at.fhooe.mc.android.aerojump.db;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -90,9 +92,17 @@ public class EnterPlayerNameActivity extends Activity implements View.OnClickLis
                     edt.putString("playerName", mName);
                     edt.putBoolean("playMusic", GameActivity.playMusic);
                     edt.putBoolean("radio_control", GameView.control);
-                    edt.commit();
+                    edt.apply();
 
-                    finish();
+                    if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                        if (shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                            Log.i(TAG, "This app needs ACESS FINE LOCATION permission");
+                            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
+                        } else {
+                            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
+                        }
+                    }
+                    //String uniqueID = UUID.randomUUID().toString();
                 } else Toast.makeText(this, "Enter your name first!", Toast.LENGTH_SHORT).show();
             } break;
             case R.id.activity_enter_playername_radio_control_a: {
@@ -104,6 +114,12 @@ public class EnterPlayerNameActivity extends Activity implements View.OnClickLis
             default:
                 Log.e(TAG, "unexpected button id encountered");
         }
+    }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (grantResults[0] == 0){
+            finish();
+        }
     }
 }

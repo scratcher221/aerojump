@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "830950589036",
+    "firebase_url": "https://aerojump-9a393.firebaseio.com",
+    "project_id": "aerojump-9a393",
+    "storage_bucket": "aerojump-9a393.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:830950589036:android:59edb4f4d87227c9",
+        "android_client_info": {
+          "package_name": "at.fhooe.mc.android.aerojump"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "830950589036-it4gfro2sv3mhbnbcop5dm4fujlqh1qc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "at.fhooe.mc.android.aerojump",
+            "certificate_hash": "09f6981f0946266e700f6d360fe282c58343ba7a"
+          }
+        },
+        {
+          "client_id": "830950589036-g9ib6ofgubc97e622insg8fem9ebbnoe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGE5Avup6ufNO-dEVnKmTX0OgIyOJ2TLs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "830950589036-g9ib6ofgubc97e622insg8fem9ebbnoe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
