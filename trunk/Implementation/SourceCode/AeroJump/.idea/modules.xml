@@ -3,9 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AeroJump.iml" filepath="$PROJECT_DIR$/AeroJump.iml" />
-      <module fileurl="file://C:\Users\Marko\Desktop\aerojump\trunk\Implementation\SourceCode\AeroJump\AeroJump.iml" filepath="C:\Users\Marko\Desktop\aerojump\trunk\Implementation\SourceCode\AeroJump\AeroJump.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\Marko\Desktop\aerojump\trunk\Implementation\SourceCode\AeroJump\app\app.iml" filepath="C:\Users\Marko\Desktop\aerojump\trunk\Implementation\SourceCode\AeroJump\app\app.iml" />
     </modules>
   </component>
 </project>

@@ -27,7 +27,7 @@ public class HighscoreActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_highscores);
 
-        final GetHighscoresThread dT = new GetHighscoresThread();
+        /*final GetHighscoresThread dT = new GetHighscoresThread();
         if (mInsertHighscoreThread != null){
             isLoading = true;
             final Timer t = new Timer();
@@ -66,13 +66,13 @@ public class HighscoreActivity extends Activity {
                     }
                 });
             }
-        }, 0, 100);
+        }, 0, 100);*/
 
         SharedPreferences sp = getSharedPreferences(MY_SHARED_PREF_KEY, Context.MODE_PRIVATE);
         SharedPreferences.Editor edt = sp.edit();
         edt.putInt("lastHighscore", lastHighscore);
         edt.putString("lastPlayer", lastPlayer);
-        edt.commit();
+        edt.apply();
 
         TextView lastScore = (TextView)findViewById(R.id.activity_highscores_lastplayed);
         lastScore.setText(sp.getString("lastPlayer", "") + "\n" + String.valueOf(lastHighscore));

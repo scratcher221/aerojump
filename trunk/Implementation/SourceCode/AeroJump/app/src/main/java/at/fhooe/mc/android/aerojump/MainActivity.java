@@ -5,16 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 
 import at.fhooe.mc.android.aerojump.db.EnterPlayerNameActivity;
 import at.fhooe.mc.android.aerojump.db.HighscoreActivity;
@@ -29,13 +24,20 @@ public class MainActivity extends Activity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Animation slideInPlay = AnimationUtils.loadAnimation(this, R.anim.slide_in_play_button);
+        Animation slideInScore = AnimationUtils.loadAnimation(this, R.anim.slide_in_score_button);
+        Animation slideInInfo = AnimationUtils.loadAnimation(this, R.anim.slide_in_info_button);
+
         Button b = null;
         b = (Button)findViewById(R.id.activity_main_playButton);
         b.setOnClickListener(this);
+        b.startAnimation(slideInPlay);
         b = (Button)findViewById(R.id.activity_main_scoreButton);
         b.setOnClickListener(this);
+        b.startAnimation(slideInScore);
         b = (Button)findViewById(R.id.activity_main_infoButton);
         b.setOnClickListener(this);
+        b.startAnimation(slideInInfo);
         b = (Button)findViewById(R.id.activity_main_settingsButton);
         b.setOnClickListener(this);
 
@@ -43,42 +45,13 @@ public class MainActivity extends Activity implements View.OnClickListener{
         GameActivity.playMusic = sp.getBoolean("playMusic", false);
         GameView.control = sp.getBoolean("radio_control", false);
 
-        String ret = "";
-        try {
-            InputStream inputStream = this.openFileInput("PLAYERNAME");
-            if (inputStream != null) {
-                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                String receiveString = "";
-                StringBuilder stringBuilder = new StringBuilder();
-
-                while ( (receiveString = bufferedReader.readLine()) != null) {
-                    stringBuilder.append(receiveString);
-                }
-
-                inputStream.close();
-                ret = stringBuilder.toString();
-            }
-        } catch (FileNotFoundException e) {
-            Log.e(TAG, "File PLAYERNAME not found ... will be created");
+        PLAYERNAME = sp.getString("playerName", null);
+        if (PLAYERNAME == null){
             Intent i = new Intent(this, EnterPlayerNameActivity.class);
+            i.putExtra("firstStart", true);
             EnterPlayerNameActivity.showOnlyEditText = true;
             startActivity(i);
         }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        /*File f = new File(Environment.getExternalStorageDirectory(), "AeroJump");
-        if (!f.exists()) {
-            if (f.mkdir()){
-                Log.i(TAG, "Successfull");
-            } else {
-                Log.i(TAG, "Not Successfull");
-            }
-        }*/
-
-        PLAYERNAME = ret;
     }
 
     @Override
