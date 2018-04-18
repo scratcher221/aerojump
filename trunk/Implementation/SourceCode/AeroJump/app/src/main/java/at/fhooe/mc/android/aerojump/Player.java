@@ -67,7 +67,7 @@ public class Player {
     public void moveOnGameOver(Context _c){
         if (mRectPlayer.top > mScreenHeight && !mgameOver) {
             final InsertHighscoresThread insertHighscoresThread = new InsertHighscoresThread(MainActivity.PLAYERNAME, String.valueOf(this.getHighscore()));
-            insertHighscoresThread.start();
+            insertHighscoresThread.insertIntoDatabase();
             Intent i = new Intent(_c, HighscoreActivity.class);
             ((Activity)_c).finish();
             HighscoreActivity.setInsertHighscoreThread(insertHighscoresThread);

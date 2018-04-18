@@ -1,36 +1,65 @@
 package at.fhooe.mc.android.aerojump.db;
 
-import android.content.Context;
 import android.util.Log;
-import android.widget.TextView;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLEncoder;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.List;
 
 /**
  * Created by david on 01.07.17.
  */
 
-public class InsertHighscoresThread extends Thread{
+public class InsertHighscoresThread {
+
     private static final String TAG = "GetHighscoresThread";
-    private String name, score;
+    private String mName, mScore;
+    private List scoresList;
+
+    private DatabaseReference mScoresReference;
 
     public InsertHighscoresThread(String _name, String _score) {
-        name = _name;
-        score = _score;
+        mName = _name;
+        mScore = _score;
+
+        mScoresReference = FirebaseDatabase.getInstance().getReference().child("users").child(mName);
     }
 
-    @Override
+    public void insertIntoDatabase(){
+        mScoresReference.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    /*@Override
     public void run() {
         try {
             URL url = new URL("http://dav-raspberrypi.ddns.net/http/insertscore.php");
@@ -40,7 +69,7 @@ public class InsertHighscoresThread extends Thread{
             httpURLConnection.setDoOutput(true);
             OutputStream outputStream = httpURLConnection.getOutputStream();
             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-            String post_data = URLEncoder.encode("name", "UTF-8")+"="+URLEncoder.encode(name, "UTF-8")+"&"+URLEncoder.encode("score", "UTF-8")+"="+URLEncoder.encode(score, "UTF-8");
+            String post_data = URLEncoder.encode("mName", "UTF-8")+"="+URLEncoder.encode(mName, "UTF-8")+"&"+URLEncoder.encode("mScore", "UTF-8")+"="+URLEncoder.encode(mScore, "UTF-8");
             Log.i(TAG, "POST Data --> "+post_data);
             bufferedWriter.write(post_data);
             bufferedWriter.flush();
@@ -64,5 +93,5 @@ public class InsertHighscoresThread extends Thread{
             Log.e(TAG, "IOException: "+e.getMessage());
             e.printStackTrace();
         }
-    }
+    }*/
 }
