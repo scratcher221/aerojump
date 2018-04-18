@@ -7,18 +7,25 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
-import java.util.Timer;
-import java.util.TimerTask;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-import at.fhooe.mc.android.aerojump.MainActivity;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+
 import at.fhooe.mc.android.aerojump.R;
 
 public class HighscoreActivity extends Activity {
 
+    public static final String TAG = "HighscoreActivity";
     public static final String MY_SHARED_PREF_KEY = "SharedPref2";
 
-    private static InsertHighscoresThread mInsertHighscoreThread;
-    private boolean isLoading = false;
+    private List<PlayerModel> mHighscoreList;
     private static int lastHighscore;
     private static String lastPlayer;
 
@@ -27,46 +34,35 @@ public class HighscoreActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_highscores);
 
-        /*final GetHighscoresThread dT = new GetHighscoresThread();
-        if (mInsertHighscoreThread != null){
-            isLoading = true;
-            final Timer t = new Timer();
-            t.scheduleAtFixedRate(new TimerTask() {
-                @Override
-                public void run() {
-                    if (!mInsertHighscoreThread.isAlive()){
-                        t.cancel();
-                        dT.start();
-                        isLoading = false;
-                    }
-                }
-            }, 0, 100);
-        } else dT.start();
+        DatabaseReference highscoresReference = FirebaseDatabase.getInstance().getReference().child("users");
+        mHighscoreList = new ArrayList<>();
 
-        final TextView tvNames = (TextView) findViewById(R.id.activity_highscores_names);
-        final TextView tvScores = (TextView) findViewById(R.id.activity_highscores_scores);
-
-        final Timer t = new Timer();
-        t.scheduleAtFixedRate(new TimerTask() {
+        highscoresReference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void run() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (!dT.isAlive() && !isLoading) {
-                            t.cancel();
-                            Parser p = new Parser(GetHighscoresThread.HIGHSCORES);
-                            tvNames.setText(p.getNames());
-                            tvScores.setText(p.getScores());
-                        }
-                        else {
-                            tvNames.setText("Loading Scores...");
-                            tvScores.setText("");
-                        }
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Iterable<DataSnapshot> snap = dataSnapshot.getChildren();
+                Iterator<DataSnapshot> iterator = snap.iterator();
+                while (iterator.hasNext()){
+                    DataSnapshot entry = iterator.next();
+                    String curEntryName = entry.getKey();
+                    long curEntryScore;
+                    if (entry.hasChild("highscore")){
+                        curEntryScore = (long)entry.child("highscore").getValue();
+                    } else {
+                        curEntryScore = 0;
                     }
-                });
+                    mHighscoreList.add(new PlayerModel(curEntryName, (int)curEntryScore));
+                    Log.i(TAG, curEntryName + ": " + String.valueOf(curEntryScore));
+                }
+                PlayerModel[] array = (PlayerModel[])mHighscoreList.toArray();
+
             }
-        }, 0, 100);*/
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e(TAG, "Failed to read value!");
+            }
+        });
 
         SharedPreferences sp = getSharedPreferences(MY_SHARED_PREF_KEY, Context.MODE_PRIVATE);
         SharedPreferences.Editor edt = sp.edit();
@@ -76,10 +72,6 @@ public class HighscoreActivity extends Activity {
 
         TextView lastScore = (TextView)findViewById(R.id.activity_highscores_lastplayed);
         lastScore.setText(sp.getString("lastPlayer", "") + "\n" + String.valueOf(lastHighscore));
-    }
-
-    public static void setInsertHighscoreThread(InsertHighscoresThread _it){
-        mInsertHighscoreThread = _it;
     }
 
     public static void setLastHighscore(int _h){
