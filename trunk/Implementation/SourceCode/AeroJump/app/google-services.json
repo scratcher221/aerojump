@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "830950589036-7ikuc1p0thdcnh02hickfvd8o9hhh2f4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "at.fhooe.mc.android.aerojump",
+            "certificate_hash": "b34585297e5a8a92759804c330129c7da843dcf9"
+          }
+        },
+        {
           "client_id": "830950589036-it4gfro2sv3mhbnbcop5dm4fujlqh1qc.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
